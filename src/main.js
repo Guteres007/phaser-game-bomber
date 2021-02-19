@@ -1,11 +1,11 @@
 import {AUTO, Game} from 'phaser'
 
-import HelloWorldScene from './scenes/HelloWorldScene'
+import MainScene from './scenes/MainScene'
 
 const config = {
 	type: AUTO,
-	width: 800,
-	height: 600,
+	width: 1600,
+	height: 900,
 	physics: {
 		default: 'arcade',
 		arcade: {
@@ -13,7 +13,7 @@ const config = {
 			debug: true,
 		}
 	},
-	scene: [HelloWorldScene]
+	scene: [MainScene]
 }
 
 export default new Game(config)
