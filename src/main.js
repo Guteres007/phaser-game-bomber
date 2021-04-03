@@ -1,6 +1,6 @@
 import {AUTO, Game} from 'phaser'
 
-import MainScene from './scenes/MainScene'
+import LevelOne from './scenes/LevelOne'
 
 const config = {
 	type: AUTO,
@@ -13,7 +13,7 @@ const config = {
 			debug: true,
 		}
 	},
-	scene: [MainScene]
+	scene: [LevelOne]
 }
 
 export default new Game(config)

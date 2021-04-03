@@ -1,12 +1,13 @@
 import {Scene} from 'phaser'
 
-export default class MainScene extends Scene
+export default class LevelOne extends Scene
 {
 	constructor()
 	{
 		super('main')
         this.platforms = null
         this.spriteKanon = null
+        this.cursor = null
 	}
 
 	preload()
@@ -30,15 +31,19 @@ export default class MainScene extends Scene
         this.add.image(800, 706, 'bunkr')
     
         this.spriteKanon.setOrigin(0.5,1)
-        
+        this.cursor = this.input.keyboard.createCursorKeys()
        // this.platforms.create(233, 568, 'ground').setScale(2).refreshBody()
        // this.platforms.create(400, 233, 'ground')
 
     }
 
     update(){
-        if (this.spriteKanon.angle < 90 ) {
-            this.spriteKanon.angle += 2
+
+        if (this.cursor.right.isDown && this.spriteKanon.angle < 90 ) {
+            this.spriteKanon.angle += 3
+        } 
+        else if (this.cursor.left.isDown && this.spriteKanon.angle > -90 ) {
+            this.spriteKanon.angle -= 3
         } 
     }
 }
