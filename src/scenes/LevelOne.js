@@ -1,13 +1,15 @@
 import {Scene} from 'phaser'
+import Canon from '../player'
 
 export default class LevelOne extends Scene
 {
 	constructor()
 	{
 		super('main')
-        this.platforms = null
-        this.spriteKanon = null
-        this.cursor = null
+        this.platforms = undefined
+        this.spriteCanon = undefined
+        this.cursor = undefined
+        this.novyKanon = undefined
 	}
 
 	preload()
@@ -26,24 +28,10 @@ export default class LevelOne extends Scene
         this.platforms = this.physics.add.staticGroup()
         this.add.image(800, 450, 'pozadi')
         this.add.image(800, 760, 'ostrov')
-        this.add.image(800, 880, 'vlny')
-        this.spriteKanon = this.add.sprite(800, 680, 'kanon')
+        this.add.image(800, 880, 'vlny') 
+        new Canon(this, 800, 680, 'kanon')       
         this.add.image(800, 706, 'bunkr')
-    
-        this.spriteKanon.setOrigin(0.5,1)
-        this.cursor = this.input.keyboard.createCursorKeys()
-       // this.platforms.create(233, 568, 'ground').setScale(2).refreshBody()
-       // this.platforms.create(400, 233, 'ground')
 
     }
 
-    update(){
-
-        if (this.cursor.right.isDown && this.spriteKanon.angle < 90 ) {
-            this.spriteKanon.angle += 3
-        } 
-        else if (this.cursor.left.isDown && this.spriteKanon.angle > -90 ) {
-            this.spriteKanon.angle -= 3
-        } 
-    }
 }
