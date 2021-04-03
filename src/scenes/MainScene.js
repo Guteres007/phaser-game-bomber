@@ -6,6 +6,7 @@ export default class MainScene extends Scene
 	{
 		super('main')
         this.platforms = null
+        this.spriteKanon = null
 	}
 
 	preload()
@@ -20,21 +21,24 @@ export default class MainScene extends Scene
 
     create()
     {   
-        //platform
+            //platform
         this.platforms = this.physics.add.staticGroup()
         this.add.image(800, 450, 'pozadi')
         this.add.image(800, 760, 'ostrov')
         this.add.image(800, 880, 'vlny')
-        this.add.image(800, 650, 'kanon')
+        this.spriteKanon = this.add.sprite(800, 680, 'kanon')
         this.add.image(800, 706, 'bunkr')
     
+        this.spriteKanon.setOrigin(0.5,1)
+        
        // this.platforms.create(233, 568, 'ground').setScale(2).refreshBody()
        // this.platforms.create(400, 233, 'ground')
-
 
     }
 
     update(){
-       
+        if (this.spriteKanon.angle < 90 ) {
+            this.spriteKanon.angle += 2
+        } 
     }
 }
