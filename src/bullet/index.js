@@ -1,5 +1,5 @@
 import {GameObjects, Math as PhaserMath} from 'phaser'
-export default class Bullet extends GameObjects.Image {
+export default class Bullet extends GameObjects.Sprite {
     
     constructor(scene, x, y, textureKey){
         super(scene, x, y, textureKey)
@@ -17,18 +17,23 @@ export default class Bullet extends GameObjects.Image {
     }
 
     fire(shooter) {
-        this.xSpeed = this.speed * Math.cos(shooter.angle)
-        this.ySpeed = this.speed * Math.sin(shooter.angle)
-        this.scene.add.existing(this)
-
-        this.isFiring = true
         
+        this.angle = shooter.angle
+        this.xSpeed = this.speed * Math.sin(Math.PI * this.angle / 180)
+        this.ySpeed = this.speed * Math.cos(Math.PI * this.angle / 180)
+        this.scene.add.existing(this)
+        this.y = shooter.y - (100 * Math.cos(this.rotation))
+        this.x = shooter.x + (100 * Math.sin(this.rotation))
+        this.isFiring = true
+
+         
     }
 
     preUpdate(time, delta) {
-        if (this.isFiring) {
-            this.x -= this.xSpeed * delta;
-            this.y += this.ySpeed * delta;
+        
+        if (this.isFiring) { 
+           this.x += this.xSpeed * delta;
+           this.y -= this.ySpeed * delta;
         }    
     }
 

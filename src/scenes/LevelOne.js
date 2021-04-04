@@ -23,8 +23,8 @@ export default class LevelOne extends Scene
         this.load.image('ostrov', 'assets/ostrov.png')
         this.load.image('vlny', 'assets/vlny.png')
         this.load.image('bunkr', 'assets/bunkr-ex.png')
-        this.load.image('kanon', 'assets/kanon-ex.png')
         this.load.image('bullet', 'assets/strela-docasna.png')
+        this.load.image('kanon', 'assets/kanon-ex.png')
     }
     
 
@@ -34,9 +34,8 @@ export default class LevelOne extends Scene
         this.add.image(800, 450, 'pozadi')
         this.add.image(800, 760, 'ostrov')
         this.add.image(800, 880, 'vlny')
-        
-        this.add.image(800, 706, 'bunkr')
         this.canon = new Canon(this, 800, 680, 'kanon')
+        this.add.image(800, 706, 'bunkr')
         this.cursor = this.input.keyboard.createCursorKeys()
 
     }
