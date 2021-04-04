@@ -17,8 +17,8 @@ export default class Bullet extends GameObjects.Image {
     }
 
     fire(shooter) {
-        this.xSpeed = this.speed * Math.sin(shooter.angle-1)
-        this.ySpeed = this.speed * Math.sin(shooter.angle-1)
+        this.xSpeed = this.speed * Math.cos(shooter.angle)
+        this.ySpeed = this.speed * Math.sin(shooter.angle)
         this.scene.add.existing(this)
 
         this.isFiring = true
