@@ -45,8 +45,6 @@ export default class LevelOne extends Scene
         if (this.cursor.space.isDown) { 
             this.bullet = new Bullet(this, 800, 680, 'bullet')
             this.bullet.fire(this.canon)
-            this.add.existing(this.bullet)
-            
         }
         
     }
