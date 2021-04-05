@@ -12,7 +12,7 @@ export default class LevelOne extends Scene
         this.canon = undefined
         this.bullet = undefined
         this.cursor = undefined
-
+        this.nextFireTime = 0
 	}
 
         
@@ -40,10 +40,12 @@ export default class LevelOne extends Scene
 
     }
 
-    update() {
-        if (this.cursor.space.isDown) { 
+    update(time, delta) {
+        
+        if (this.cursor.space.isDown && this.nextFireTime < time) { 
             this.bullet = new Bullet(this, 800, 680, 'bullet')
             this.bullet.fire(this.canon)
+            this.nextFireTime = time + 500
         }
         
     }
