@@ -50,11 +50,6 @@ export default class LevelOne extends Scene
     }
 
     update(time, delta) {
-        this.helicopterCount
-
-
-    
-       
         if (this.cursor.space.isDown && this.nextFireTime < time) { 
             this.bullet = new Bullet(this, 800, 680, 'bullet')
             this.bullet.fire(this.canon)
