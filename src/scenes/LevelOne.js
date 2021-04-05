@@ -1,6 +1,9 @@
-import {Scene} from 'phaser'
+import {Scene, Time} from 'phaser'
 import Canon from '../canon'
 import Bullet from '../bullet'
+import Helicopter from '../helicopter'
+
+const TIME_BETWEEN_BULLETS = 250
 
 export default class LevelOne extends Scene
 {
@@ -13,6 +16,8 @@ export default class LevelOne extends Scene
         this.bullet = undefined
         this.cursor = undefined
         this.nextFireTime = 0
+        this.helicopterCount = 0
+
 	}
 
         
@@ -25,6 +30,7 @@ export default class LevelOne extends Scene
         this.load.image('bunkr', 'assets/bunkr-ex.png')
         this.load.image('bullet', 'assets/strela-docasna.png')
         this.load.image('kanon', 'assets/kanon-ex.png')
+        this.load.image('helikoptera', 'assets/vrtulnik-nahled-cely.png')
     }
     
 
@@ -37,15 +43,22 @@ export default class LevelOne extends Scene
         this.canon = new Canon(this, 800, 680, 'kanon')
         this.add.image(800, 706, 'bunkr')
         this.cursor = this.input.keyboard.createCursorKeys()
+        new Helicopter(this, 70, 60, 'helikoptera')
+        
+        this.time.addEvent({delay: 1000, repeat: 1000, loop: true, callback: ()=> { new Helicopter(this, Math.round(Math.random()) * 1000, 60, 'helikoptera')}})
 
     }
 
     update(time, delta) {
-        
+        this.helicopterCount
+
+
+    
+       
         if (this.cursor.space.isDown && this.nextFireTime < time) { 
             this.bullet = new Bullet(this, 800, 680, 'bullet')
             this.bullet.fire(this.canon)
-            this.nextFireTime = time + 500
+            this.nextFireTime = time + TIME_BETWEEN_BULLETS
         }
         
     }

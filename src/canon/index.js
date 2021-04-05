@@ -1,4 +1,5 @@
 import {GameObjects} from 'phaser'
+const ANGLE_SPEED = 3
 export default class Canon extends GameObjects.Sprite {
     
     constructor(scene, x, y, textureKey){
@@ -16,10 +17,10 @@ export default class Canon extends GameObjects.Sprite {
 
     preUpdate(){
         if (this.cursor.right.isDown && this.angle < 90 ) {
-            this.angle += 3
+            this.angle += ANGLE_SPEED
         } 
         else if (this.cursor.left.isDown && this.angle > -90 ) {
-            this.angle -= 3
+            this.angle -= ANGLE_SPEED
         } 
     }
 
